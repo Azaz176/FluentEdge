@@ -1,86 +1,187 @@
-import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-export default function TestimonialsPreview() {
+const TestimonialCarousel = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
+  const carouselRef = useRef(null);
+
   const testimonials = [
     {
-      name: 'Sarah Johnson',
-      country: 'Canada',
-      text: 'Improved my IELTS score from 6.5 to 8.0 in just 3 months!',
+      id: 1,
+      text: "GRE Verbal training was exceptional. Clear explanations and great support.",
+      name: "Michael Chen",
+      location: "China",
       rating: 5
     },
     {
-      name: 'Ahmed Hassan',
-      country: 'Egypt',
-      text: 'Best TOEFL preparation. Flexible timings worked perfectly for me.',
+      id: 2,
+      text: "The course helped me improve my score significantly. Highly recommended!",
+      name: "Sarah Johnson",
+      location: "USA",
       rating: 5
     },
     {
-      name: 'Priya Sharma',
-      country: 'India',
-      text: 'PTE coaching helped me achieve my target score. Highly recommended!',
+      id: 3,
+      text: "Outstanding teaching methods and comprehensive study materials.",
+      name: "Priya Sharma",
+      location: "India",
       rating: 5
     },
     {
-      name: 'Michael Chen',
-      country: 'China',
-      text: 'GRE Verbal training was exceptional. Clear explanations and great support.',
+      id: 4,
+      text: "Best investment I made for my GRE preparation. Thank you FluentEdge!",
+      name: "Alex Martinez",
+      location: "Spain",
       rating: 5
     }
   ];
 
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const nextSlide = () => {
+    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+  };
 
+  const prevSlide = () => {
+    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  };
+
+  const goToSlide = (index) => {
+    setCurrentIndex(index);
+  };
+
+  // Handle touch events for mobile swiping
+  const handleTouchStart = (e) => {
+    setTouchStart(e.touches[0].clientX);
+  };
+
+  const handleTouchMove = (e) => {
+    setTouchEnd(e.touches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStart - touchEnd > 75) {
+      // Swiped left
+      nextSlide();
+    }
+
+    if (touchStart - touchEnd < -75) {
+      // Swiped right
+      prevSlide();
+    }
+  };
+
+  // Auto-play functionality (optional)
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+      nextSlide();
     }, 5000);
+
     return () => clearInterval(interval);
-  }, []);
+  }, [currentIndex]);
 
   return (
-    <section className="py-20 bg-white">
-      <div className="max-w-6xl mx-auto px-6">
-        <h2 className="text-4xl font-bold text-center text-gray-900 mb-12">What Students Say</h2>
+    <div className="min-h-screen bg-white py-16 px-4">
+      <div className="max-w-6xl mx-auto">
+        {/* Header */}
+        <h2 className="text-4xl md:text-5xl font-bold text-center text-gray-900 mb-16">
+          What Students Say
+        </h2>
+
+        {/* Carousel Container */}
         <div className="relative">
-          <div className="bg-gray-50 rounded-2xl p-8 md:p-12 min-h-[300px] flex items-center">
-            <div className="text-center w-full">
-              <div className="flex justify-center mb-4">
-                {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
-                  <span key={i} className="text-yellow-400 text-2xl">★</span>
-                ))}
-              </div>
-              <p className="text-xl text-gray-700 mb-6 italic">
-                "{testimonials[currentIndex].text}"
-              </p>
-              <div>
-                <p className="font-semibold text-gray-900">{testimonials[currentIndex].name}</p>
-                <p className="text-gray-600">{testimonials[currentIndex].country}</p>
-              </div>
+          {/* Carousel Wrapper */}
+          <div
+            ref={carouselRef}
+            className="overflow-hidden"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          >
+            <div
+              className="flex transition-transform duration-500 ease-out"
+              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+            >
+              {testimonials.map((testimonial) => (
+                <div
+                  key={testimonial.id}
+                  className="w-full flex-shrink-0 px-4 md:px-8"
+                >
+                  <div className="bg-gray-50 rounded-2xl p-8 md:p-12 shadow-lg max-w-4xl mx-auto">
+                    {/* Stars */}
+                    <div className="flex justify-center mb-6">
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <svg
+                          key={i}
+                          className="w-6 h-6 text-yellow-400 fill-current"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                        </svg>
+                      ))}
+                    </div>
+
+                    {/* Testimonial Text */}
+                    <p className="text-xl md:text-2xl text-gray-700 text-center italic mb-8 leading-relaxed">
+                      "{testimonial.text}"
+                    </p>
+
+                    {/* Author */}
+                    <div className="text-center">
+                      <p className="text-lg font-semibold text-gray-900">
+                        {testimonial.name}
+                      </p>
+                      <p className="text-gray-600">{testimonial.location}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
-          <div className="flex justify-center mt-6 gap-2">
-            {testimonials.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`w-3 h-3 rounded-full transition ${
-                  index === currentIndex ? 'bg-blue-600' : 'bg-gray-300'
-                }`}
-              />
-            ))}
-          </div>
-        </div>
-        <div className="text-center mt-8">
-          <Link
-            to="/testimonials"
-            className="inline-block px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition"
+
+          {/* Navigation Arrows */}
+          <button
+            onClick={prevSlide}
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-12 bg-white rounded-full p-3 shadow-lg hover:bg-gray-100 transition-colors duration-200 z-10"
+            aria-label="Previous testimonial"
           >
+            <ChevronLeft className="w-6 h-6 text-gray-800" />
+          </button>
+
+          <button
+            onClick={nextSlide}
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 bg-white rounded-full p-3 shadow-lg hover:bg-gray-100 transition-colors duration-200 z-10"
+            aria-label="Next testimonial"
+          >
+            <ChevronRight className="w-6 h-6 text-gray-800" />
+          </button>
+        </div>
+
+        {/* Dots Navigation */}
+        <div className="flex justify-center gap-2 mt-8">
+          {testimonials.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => goToSlide(index)}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                index === currentIndex
+                  ? 'bg-blue-600 w-8'
+                  : 'bg-gray-300 hover:bg-gray-400'
+              }`}
+              aria-label={`Go to testimonial ${index + 1}`}
+            />
+          ))}
+        </div>
+
+        {/* View All Button */}
+        <div className="text-center mt-12">
+          <button className="bg-blue-600 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-colors duration-200 shadow-md hover:shadow-lg">
             View All Testimonials
-          </Link>
+          </button>
         </div>
       </div>
-    </section>
+    </div>
   );
-}
+};
 
+export default TestimonialCarousel;
