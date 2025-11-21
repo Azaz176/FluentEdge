@@ -10,7 +10,7 @@ export default function Header() {
       <div className="max-w-6xl mx-auto px-6">
         <div className="flex items-center justify-between h-24">
           <Link to="/" className="flex items-center">
-            <span className="text-2xl font-bold text-gray-900">J&C Language School</span>
+            <span className="text-2xl font-bold text-gray-900">FluentEdge</span>
           </Link>
 
           {/* Desktop Navigation */}
