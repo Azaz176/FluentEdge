@@ -62,7 +62,7 @@ git commit -m "Initial commit: React + Vite + TypeScript setup"
 
 2. **Repository Settings:**
    - Repository name: `fluent-edge` (or any name you like)
-   - Description: "J&C Language School - React + Vite + TypeScript"
+   - Description: "FluentEdge - React + Vite + TypeScript"
    - Visibility: **Public** (for free Netlify) or **Private** (if you have paid Netlify)
    - **DO NOT** initialize with README, .gitignore, or license (we already have these)
    - Click "Create repository"
