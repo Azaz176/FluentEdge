@@ -1,31 +1,38 @@
+import { Link } from 'react-router-dom';
+
 export default function Hero() {
   return (
-    <section className="relative bg-gradient-to-br from-gray-50 to-white py-24 md:py-32 overflow-hidden">
-      <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1920')] bg-cover bg-center opacity-5"></div>
+    <section className="relative bg-gradient-to-br from-blue-600 via-blue-700 to-purple-700 py-20 md:py-32 overflow-hidden text-white">
+      <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920')] bg-cover bg-center opacity-10"></div>
       
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
-            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 leading-tight mb-6">
-              DISCOVER THE JOY OF LEARNING LANGUAGES
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+              Master IELTS, TOEFL, PTE, CELPIP & GRE With Expert Guidance
             </h1>
-            <p className="text-xl text-gray-700 mb-8">
-              Learn Online with Expert & Passionate Instructors
+            <p className="text-xl md:text-2xl text-blue-100 mb-8">
+              Online training for students and professionals across the globe.
             </p>
-            <a
-              href="#start-learning"
-              className="inline-flex items-center px-8 py-4 bg-green-600 text-white font-semibold rounded-full hover:bg-green-700 transition shadow-lg hover:shadow-xl"
-            >
-              Start Learning
-              <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </a>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link
+                to="/book-demo"
+                className="inline-flex items-center justify-center px-8 py-4 bg-white text-blue-700 font-semibold rounded-lg hover:bg-blue-50 transition shadow-lg hover:shadow-xl"
+              >
+                Book Free Demo
+              </Link>
+              <Link
+                to="/courses"
+                className="inline-flex items-center justify-center px-8 py-4 bg-transparent border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-blue-700 transition"
+              >
+                Explore Courses
+              </Link>
+            </div>
           </div>
           <div className="relative h-96 md:h-[500px]">
             <img
-              src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800"
-              alt="Language learning"
+              src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800"
+              alt="Test preparation"
               className="w-full h-full object-cover rounded-2xl shadow-2xl"
             />
           </div>

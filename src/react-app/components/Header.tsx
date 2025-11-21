@@ -14,34 +14,33 @@ export default function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
-            <Link to="/" className="text-sm font-medium text-gray-900 hover:text-green-600 transition">
+          <nav className="hidden md:flex items-center space-x-6">
+            <Link to="/" className="text-sm font-medium text-gray-900 hover:text-blue-600 transition">
               Home
             </Link>
-            <div className="relative group">
-              <button className="text-sm font-medium text-gray-900 hover:text-green-600 transition">
-                Languages
-              </button>
-              <div className="absolute top-full left-0 mt-2 bg-white shadow-lg rounded-lg py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 min-w-[180px]">
-                <a href="#french" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">French</a>
-                <a href="#german" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">German</a>
-                <a href="#spanish" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Spanish</a>
-              </div>
-            </div>
-            <a href="#kids" className="text-sm font-medium text-gray-900 hover:text-green-600 transition">
-              Kids
-            </a>
-            <a href="#testimonials" className="text-sm font-medium text-gray-900 hover:text-green-600 transition">
-              Testimonials
-            </a>
-            <a href="#blog" className="text-sm font-medium text-gray-900 hover:text-green-600 transition">
-              Blog
-            </a>
-            <Link to="/about" className="text-sm font-medium text-gray-900 hover:text-green-600 transition">
+            <Link to="/courses" className="text-sm font-medium text-gray-900 hover:text-blue-600 transition">
+              Courses
+            </Link>
+            <Link to="/about" className="text-sm font-medium text-gray-900 hover:text-blue-600 transition">
               About
             </Link>
-            <Link to="/contact" className="text-sm font-medium text-gray-900 hover:text-green-600 transition">
+            <Link to="/testimonials" className="text-sm font-medium text-gray-900 hover:text-blue-600 transition">
+              Testimonials
+            </Link>
+            <Link to="/blog" className="text-sm font-medium text-gray-900 hover:text-blue-600 transition">
+              Blog
+            </Link>
+            <Link to="/free-resources" className="text-sm font-medium text-gray-900 hover:text-blue-600 transition">
+              Resources
+            </Link>
+            <Link to="/faq" className="text-sm font-medium text-gray-900 hover:text-blue-600 transition">
+              FAQ
+            </Link>
+            <Link to="/contact" className="text-sm font-medium text-gray-900 hover:text-blue-600 transition">
               Contact
+            </Link>
+            <Link to="/book-demo" className="px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-lg hover:bg-blue-700 transition">
+              Book Demo
             </Link>
           </nav>
 
@@ -58,20 +57,32 @@ export default function Header() {
         {mobileMenuOpen && (
           <nav className="md:hidden py-4 border-t border-gray-200">
             <div className="flex flex-col space-y-3">
-              <Link to="/" className="text-sm font-medium text-gray-900 hover:text-green-600 py-2">
+              <Link to="/" className="text-sm font-medium text-gray-900 hover:text-blue-600 py-2">
                 Home
               </Link>
-              <a href="#kids" className="text-sm font-medium text-gray-900 hover:text-green-600 py-2">
-                Kids
-              </a>
-              <a href="#testimonials" className="text-sm font-medium text-gray-900 hover:text-green-600 py-2">
-                Testimonials
-              </a>
-              <Link to="/about" className="text-sm font-medium text-gray-900 hover:text-green-600 py-2">
+              <Link to="/courses" className="text-sm font-medium text-gray-900 hover:text-blue-600 py-2">
+                Courses
+              </Link>
+              <Link to="/about" className="text-sm font-medium text-gray-900 hover:text-blue-600 py-2">
                 About
               </Link>
-              <Link to="/contact" className="text-sm font-medium text-gray-900 hover:text-green-600 py-2">
+              <Link to="/testimonials" className="text-sm font-medium text-gray-900 hover:text-blue-600 py-2">
+                Testimonials
+              </Link>
+              <Link to="/blog" className="text-sm font-medium text-gray-900 hover:text-blue-600 py-2">
+                Blog
+              </Link>
+              <Link to="/free-resources" className="text-sm font-medium text-gray-900 hover:text-blue-600 py-2">
+                Resources
+              </Link>
+              <Link to="/faq" className="text-sm font-medium text-gray-900 hover:text-blue-600 py-2">
+                FAQ
+              </Link>
+              <Link to="/contact" className="text-sm font-medium text-gray-900 hover:text-blue-600 py-2">
                 Contact
+              </Link>
+              <Link to="/book-demo" className="text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 py-2 px-4 rounded-lg text-center">
+                Book Demo
               </Link>
             </div>
           </nav>

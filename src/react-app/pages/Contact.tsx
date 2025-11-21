@@ -1,50 +1,132 @@
+import { useState } from 'react';
 import Header from '@/react-app/components/Header';
 import Footer from '@/react-app/components/Footer';
 
 export default function Contact() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    country: '',
+    message: ''
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    alert('Thank you! We will get back to you soon.');
+    setFormData({ name: '', email: '', phone: '', country: '', message: '' });
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
   return (
     <div className="min-h-screen bg-white">
       <Header />
       <main className="max-w-6xl mx-auto px-6 py-20">
-        <h1 className="text-5xl font-bold text-gray-900 mb-8">Contact Us</h1>
+        <h1 className="text-5xl font-bold text-center text-gray-900 mb-4">Contact Us</h1>
+        <p className="text-xl text-center text-gray-600 mb-12">
+          Get in touch for inquiries or support
+        </p>
+
         <div className="grid md:grid-cols-2 gap-12">
           <div>
-            <h2 className="text-2xl font-semibold mb-4">Get In Touch</h2>
-            <div className="space-y-4">
-              <p className="text-gray-700">
-                <strong>Address:</strong><br />
-                PG - 27, Janakpuri<br />
-                Delhi - 110058
-              </p>
-              <p className="text-gray-700">
-                <strong>Email:</strong><br />
-                info@jandclanguageschool.org
-              </p>
+            <h2 className="text-2xl font-semibold mb-6">Contact Information</h2>
+            <div className="space-y-4 mb-8">
+              <div>
+                <p className="font-semibold text-gray-900 mb-1">Email</p>
+                <a href="mailto:info@fluentedge.com" className="text-blue-600 hover:text-blue-700">
+                  info@fluentedge.com
+                </a>
+              </div>
+              <div>
+                <p className="font-semibold text-gray-900 mb-1">Phone</p>
+                <a href="tel:+1234567890" className="text-blue-600 hover:text-blue-700">
+                  +1 (234) 567-890
+                </a>
+              </div>
+            </div>
+
+            <div className="mb-8">
+              <a
+                href="https://wa.me/1234567890"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-6 py-3 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 transition"
+              >
+                <span className="mr-2">💬</span>
+                Chat on WhatsApp
+              </a>
+            </div>
+
+            <div>
+              <h3 className="font-semibold text-gray-900 mb-4">Follow Us</h3>
+              <div className="flex space-x-4">
+                <a href="#" className="text-gray-600 hover:text-blue-600">Facebook</a>
+                <a href="#" className="text-gray-600 hover:text-blue-600">Instagram</a>
+                <a href="#" className="text-gray-600 hover:text-blue-600">LinkedIn</a>
+                <a href="#" className="text-gray-600 hover:text-blue-600">YouTube</a>
+              </div>
             </div>
           </div>
+
           <div>
-            <h2 className="text-2xl font-semibold mb-4">Send a Message</h2>
-            <form className="space-y-4">
+            <h2 className="text-2xl font-semibold mb-6">Send a Message</h2>
+            <form onSubmit={handleSubmit} className="space-y-4">
               <input
                 type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
                 placeholder="Full Name"
-                className="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+                required
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
               <input
                 type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
                 placeholder="Email"
-                className="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+                required
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
+              <input
+                type="tel"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                placeholder="Phone"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <select
+                name="country"
+                value={formData.country}
+                onChange={handleChange}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option value="">Select Country</option>
+                <option value="us">United States</option>
+                <option value="ca">Canada</option>
+                <option value="uk">United Kingdom</option>
+                <option value="in">India</option>
+                <option value="other">Other</option>
+              </select>
               <textarea
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
                 placeholder="Message"
                 rows={5}
-                className="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+                required
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
               <button
                 type="submit"
-                className="w-full bg-green-600 text-white py-3 rounded font-semibold hover:bg-green-700 transition"
+                className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition"
               >
-                Submit
+                Send Message
               </button>
             </form>
           </div>
@@ -54,3 +136,4 @@ export default function Contact() {
     </div>
   );
 }
+

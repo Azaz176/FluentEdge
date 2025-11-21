@@ -1,10 +1,9 @@
 import Header from '@/react-app/components/Header';
 import Hero from '@/react-app/components/Hero';
-import FeaturedOn from '@/react-app/components/FeaturedOn';
-import Stats from '@/react-app/components/Stats';
-import AgeGroups from '@/react-app/components/AgeGroups';
-import Features from '@/react-app/components/Features';
-import Instructors from '@/react-app/components/Instructors';
+import WhyChoose from '@/react-app/components/WhyChoose';
+import CoursesSnapshot from '@/react-app/components/CoursesSnapshot';
+import TestimonialsPreview from '@/react-app/components/TestimonialsPreview';
+import GlobalPresence from '@/react-app/components/GlobalPresence';
 import Footer from '@/react-app/components/Footer';
 
 export default function Home() {
@@ -13,11 +12,10 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        <FeaturedOn />
-        <Stats />
-        <AgeGroups />
-        <Features />
-        <Instructors />
+        <WhyChoose />
+        <CoursesSnapshot />
+        <TestimonialsPreview />
+        <GlobalPresence />
       </main>
       <Footer />
     </div>
